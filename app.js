@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require("body-parser");
 const router = require('./src/routes/routing');
+var path = require('path');
 const myErrorLogger = require('./src/utilities/errorlogger')
 const myRequestLogger = require('./src/utilities/requestlogger')
 
