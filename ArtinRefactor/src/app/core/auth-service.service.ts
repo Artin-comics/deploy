@@ -22,7 +22,9 @@ export class AuthServiceService {
   ) { }
 
   login(user) {
-    this.service.login(user);
+    let url = 'login';
+    return this.httpClient.post<any>(url, user);
+    this.isLoading = false;
   }
 
   getAccessToken() {    
