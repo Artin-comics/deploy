@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { ArtinService } from '../shared/service/artin.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,13 +17,12 @@ export class AuthServiceService {
 
   constructor(
     private httpClient: HttpClient,
-    public router: Router
+    public router: Router,
+    private service: ArtinService
   ) { }
 
   login(user) {
-    let url = '/login';
-    return this.httpClient.post<any>(url, user);
-    this.isLoading = false;
+    this.service.login(user);
   }
 
   getAccessToken() {    
