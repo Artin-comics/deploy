@@ -20,7 +20,8 @@ export class AuthServiceService {
   ) { }
 
   login(user) {
-    return this.httpClient.post<any>(`/login`, user)
+    let url = '/login';
+    return this.httpClient.post<any>(url, user);
     this.isLoading = false;
   }
 
