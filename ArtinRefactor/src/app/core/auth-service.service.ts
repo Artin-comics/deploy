@@ -17,8 +17,7 @@ export class AuthServiceService {
 
   constructor(
     private httpClient: HttpClient,
-    public router: Router,
-    private service: ArtinService
+    public router: Router
   ) { }
 
   login(user) {
