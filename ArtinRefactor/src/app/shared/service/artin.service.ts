@@ -17,11 +17,6 @@ export class ArtinService {
     private authService: AuthServiceService
   ) { }
 
-  login(user) {
-    const loginUrl = 'login';
-    return <Observable<any>> this.http.post(loginUrl, user);
-  }
-
   register(data:any) : Observable<any> {
     const signinurl = 'register' + '/' + this.token;
     return <Observable<any>> this.http.post(signinurl,data);
