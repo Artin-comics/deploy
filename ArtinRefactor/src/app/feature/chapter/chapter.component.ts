@@ -78,8 +78,10 @@ export class ChapterComponent implements OnInit {
   getChapter(){
     this.service.getchapters(this.comicstate.title)
     .subscribe(response =>{
-      this.chaptername = response.resp.chaptername
-      this.chapters = this.chaptername.split(',')
+      response.resp.map((data) => {
+        this.chaptername.push(data.chaptername)
+      })
+      this.chapters = this.chaptername
     },
     err =>{
       this.errorMessage = err.error.message;
