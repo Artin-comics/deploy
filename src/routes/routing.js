@@ -227,7 +227,6 @@ routing.put('/submitoverview/:episode/:title/:chapter',(req, res, next) => {
     let episode = req.params.episode;
     let chapter = req.params.chapter;
     let overview = req.body.episodeoverview;
-    console.log(overview);
     service.updateoverview(overview,title,episode,chapter).then((resp) => {
         if (resp) {
             res.status(200)
@@ -404,7 +403,6 @@ routing.put('/updatetitle/:username/:oldtitle/:title',(req, res, next) => {
     let oldtitle = req.params.oldtitle
     let username = req.params.username;
     let newtitle = req.params.title;
-    console.log(newtitle);
     service.updatetitle(newtitle, oldtitle, username).then((resp) => {
         if (resp) {
             res.status(200)
@@ -450,7 +448,6 @@ routing.get('/getprofile/:title/:name' ,(req, res, next) =>{
     let name = req.params.name
     service.getprofile(title, name).then((resp) =>{
         if(resp){
-            console.log(resp)
             for(i of resp){
                 let UPLOAD_PATH = i.profileimage.path
                 res.setHeader('Content-Type', 'image/jpeg');
@@ -464,7 +461,6 @@ routing.get('/characternames/:title' ,(req, res, next) =>{
     let title = req.params.title;
     service.getcharacternames(title).then((resp) =>{
         if(resp){
-            console.log(resp)
             res.json({resp}) 
         }
     })

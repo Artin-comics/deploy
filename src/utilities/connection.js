@@ -98,6 +98,9 @@ const chapterSchema = Schema({
     "title": {
         type: String,
     },
+    "username": {
+        type: String,
+    },
     "chaptername": {
         type: String,
     },
@@ -108,6 +111,18 @@ const chapterSchema = Schema({
         type : String
     },
 },{collection:"Chapter"});
+
+const storySchema = Schema({
+    "title": {
+        type: String
+    },
+    "username": {
+        type: String
+    },
+    "storyoutline": {
+        type: String
+    }
+},{collection:"Story"});
 
 const imageSchema = Schema({
     "title": {
@@ -272,6 +287,17 @@ connection.getSceneCollection = () => {
 connection.getEpisodeoverviewCollection = () => {
     return mongoose.connect("mongodb+srv://ArtinDB:ArtInDB@artin.nynkk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", { useNewUrlParser: true }).then((db) => {
         return db.model("Episodeoverview", EpisodeOverviewSchema)
+    }).catch((err) => {
+        console.log(err.message);
+        let error = new Error("Could not connect to database")
+        error.status = 500
+        throw error
+    })
+}
+
+connection.getStoryCollection = () => {
+    return mongoose.connect("mongodb+srv://ArtinDB:ArtInDB@artin.nynkk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", { useNewUrlParser: true }).then((db) => {
+        return db.model("Story", storySchema)
     }).catch((err) => {
         console.log(err.message);
         let error = new Error("Could not connect to database")

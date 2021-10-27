@@ -87,7 +87,7 @@ model.updatechapter = (chapter,username,title) => {
           ]},{$push:{chaptername : chapter.chaptername}},{ upsert : true }).then((data) => {
             if (data.nModified > 0){
                 return collection.getChapterCollection().then((chaptercollection) =>{
-                    return chaptercollection.insertMany({title : title, chaptername : chapter.chaptername}).then((data1) =>{
+                    return chaptercollection.insertMany({title : title, chaptername : chapter.chaptername, "username" : username}).then((data1) =>{
                         if (data1){
                             return true
                         }
@@ -105,11 +105,11 @@ model.updatechapter = (chapter,username,title) => {
 }
 
 model.fetchchapters = (username,title) => {
-    return collection.getComicCollection().then((collection) => {
-        return collection.findOne({$and: [
+    return collection.getChapterCollection().then((collection) => {
+        return collection.find({$and: [
             { "username" : username },
             { "title" : title }
-          ]}, { _id: 0,"chaptername":1 })
+          ]}, { _id: 0})
             .then((data) => {
                 return data
             })
@@ -117,7 +117,7 @@ model.fetchchapters = (username,title) => {
 }
 
 model.updatestory = (story, username, title) => {
-    return collection.getComicCollection().then((comiccollection) => {
+    return collection.getStoryCollection().then((comiccollection) => {
         return comiccollection.find({$and: [
             {"username": username},
             {"title": title}
@@ -130,12 +130,9 @@ model.updatestory = (story, username, title) => {
                     ]
                 }, { $pull: { storyoutline: story.storyoutline } }).then((deletedata) => {
                     if (deletedata) {
-                        return comiccollection.updateOne({
-                            $and: [
-                                { username: username },
-                                { title: title }
-                            ]
-                        }, { $push: { storyoutline: story.storyoutline } }, { upsert: true }).then((data) => {
+                        return comiccollection.insertMany({
+                            title: title, username: username, storyoutline: story.storyoutline
+                        }).then((data) => {
                             if (data.nModified > 0) {
                                 return data
                             }
@@ -146,12 +143,9 @@ model.updatestory = (story, username, title) => {
                     }
                 })
             } else {
-                return comiccollection.updateOne({
-                    $and: [
-                        { username: username },
-                        { title: title }
-                    ]
-                }, { $push: { storyoutline: story.storyoutline } }, { upsert: true }).then((data) => {
+                return comiccollection.insertMany({
+                    title: title, username: username, storyoutline: story.storyoutline
+                }).then((data) => {
                     if (data.nModified > 0) {
                         return data
                     }
@@ -165,7 +159,7 @@ model.updatestory = (story, username, title) => {
 }
 
 model.fetchstory = (username,title) => {
-    return collection.getComicCollection().then((collection) => {
+    return collection.getStoryCollection().then((collection) => {
         return collection.find({$and: [
             { username : username },
             { title : title }
@@ -278,9 +272,7 @@ model.updatescenestory = (storyObj, title, episode, chapter) => {
                 { episode: episode }
             ]
         }, { _id: 0, scenes: 1 }).then((episodedata) => {
-            console.log(episodedata.length);
             if (episodedata > 0) {
-                console.log("hello de");
                 return episodecollection.deleteMany({
                     $and: [
                         { title: title },
@@ -302,7 +294,6 @@ model.updatescenestory = (storyObj, title, episode, chapter) => {
                 })
             }
             else {
-                console.log("hello");
                 return episodecollection.insertMany({ title: title, episode: episode, chapter: chapter, scenes: storyObj }).then((data) => {
                     if (data) {
                         return data
@@ -472,12 +463,10 @@ model.getcharacternames = (title) => {
 }
 
 model.updatetitle = (newtitle, oldtitle, username) => {
-    console.log(newtitle, oldtitle, username);
     return collection.getUserCollection().then((comictitleCollection) => {
         return comictitleCollection.updateOne(
             {"username": username ,"comic.title": oldtitle}
                 ,{$set:{"comic.$.title": newtitle}},{strict:false}).then((data) => {
-            console.log(data)
             if (data.nModified > 0){
                 return collection.getComicCollection().then((comiccollection1) => {
                     return comiccollection1.find({$and:[
@@ -603,7 +592,6 @@ model.updateChaptertitle = (chapter, title, username, oldname) => {
                         return chaptercollection.updateOne(
                             { "title": title },
                             { $set: { "chaptername": chapter } }, { strict: false }).then((data) => {
-                                console.log(data.nModified);
                                 if (data.nModified > 0) {
                                     return collection.getEpisodeCollection().then((episodecollection) => {
                                         return episodecollection.updateMany(
