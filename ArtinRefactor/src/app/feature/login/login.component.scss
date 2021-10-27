@@ -1,40 +1,242 @@
-.card-container {
-    height: 100%;
+@import url("https://use.typekit.net/fvz3rkp.css");
+// .card-container {
+//     height: 100%;
+//     display: flex;
+//     justify-content: flex-end;
+//     align-items: center;
+//     padding-right: 100px;
+// }
+
+// .login-container {
+//     width: 500px;
+//     height: 270px;
+// }
+
+// .content-container {
+//     height: 100%;
+// }
+
+// .form-field {
+//     width: 100%;
+// }
+
+// mat-card-content {
+//     margin-top: 24px;
+// }
+
+// .button-container {
+//     display: flex;
+//     justify-content: flex-end;
+// }
+
+// .signUp-container {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     padding-top: 30px;
+// }
+
+// .anchor-text {
+//     color: #3f51b5
+// }
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.titlepageflex {
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding-right: 100px;
-}
-
-.login-container {
-    width: 500px;
-    height: 270px;
-}
-
-.content-container {
+    flex-wrap: wrap;
+    background-color: #ee2737ff;
     height: 100%;
 }
 
-.form-field {
-    width: 100%;
+.artin-titlepage {
+    margin: auto;
+    padding: 20px; 
+    max-width: 100%;
 }
-
-mat-card-content {
-    margin-top: 24px;
+    
+.artin-titlepage h1 {
+    font-family: p;
+    color: white;
+    font-size: 100px;
 }
-
+    
+.artin-titlepage h2 {
+    font-family: b;
+    color: white;
+    margin: 100px;
+    margin-left: unset;
+    font-size: 60px
+}
+    
+// .artin-titlepage img{
+    // width: 100px
+// }
+   
+    
+.card-container {
+    max-width: 100%;
+    margin: auto;
+}
+    
+// LOGIN BOX ___________________________________________________________________________________
+.login-container {
+    width: 400px;
+    max-width: 90%;
+    margin: auto;
+}
+    
+// LOGIN BOX BACKGROUND ___________________________________________________________________________________
+.content-container {
+    background-color: rgb(0, 128, 128);
+    background-image: url(../../../assets/dots4.png);
+    // background-size: cover;
+    // background-position: center;
+    border: 5px solid black;
+}
+    
+    
+    
+// LOGIN BUTTON ___________________________________________________________________________________
+.comic-loginbox {
+    display: inline-block;
+    background-color: black;
+    border: solid 2px white;
+    -webkit-box-shadow: 3px 3px 0px -1px black;
+    -moz-box-shadow: 3px 3px 0px -1px black;
+    box-shadow: 3px 3px 0px -1px black;
+    color: white;
+    font-family: b;
+    padding-top: 10px;
+}
+    
+.comic-login {
+    color: white;
+    font-family: "b";
+    letter-spacing: 2.5px;
+    position: relative;
+    display: block;
+    font-size: 1.3em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+    
+// TAPIN BUTTON ___________________________________________________________________________________
 .button-container {
     display: flex;
     justify-content: flex-end;
+    margin-top: 10px; 
+}
+    
+.button-container button {
+    font-family: b;
+    font-size: 20px;
+    background-color: black;
+    color: white;
+    border: solid 2px white;
+    -webkit-box-shadow: 3px 3px 0px -1px black;
+    -moz-box-shadow: 3px 3px 0px -1px black;
+    box-shadow: 3px 3px 0px -1px black;
+    border-radius: 0px;
+    cursor: pointer;
+}
+    
+// USERNAME/PASSWORD/SIGNUP BOX ___________________________________________________________________________________
+mat-card-content {
+    width: 100%;
+    margin: auto;
+    margin-top: 20px;
+}
+    
+// BORDER OF USERNAME & PASSWORD ___________________________________________________________________________________
+.mat-input-element {
+    border: 3px solid black;
+    background-color: white;
+    padding: 10px;
+}
+    
+// USERNAME ___________________________________________________________________________________
+.username-whole {
+    background-color:transparent;
 }
 
-.signUp-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-top: 30px;
+.username-whole mat-form-field {
+    width: 92%;
 }
 
-.anchor-text {
-    color: #3f51b5
+.username-whole mat-label {
+    font-family: c;
+    letter-spacing: 1px;
+    padding: 10px;
+    font-size: 20px;
+    color: yellowgreen;
 }
+
+.username-whole input {
+    font-family: b;
+    font-size: 20px;
+    letter-spacing: 1px;
+    text-align: center;
+}  
+
+.username-whole mat-error{
+    font-family: c;
+    text-align: center;
+}
+    
+// PASSWORD ___________________________________________________________________________________
+.password-whole {
+    background-color: transparent;
+    margin-top: 10px;
+}
+    
+.password-whole mat-form-field {
+    width: 92%;
+    margin: auto;
+}
+    
+.password-whole mat-label {
+    font-family: c;
+    letter-spacing: 1px;
+    padding: 10px;
+    font-size: 20px;
+    color: yellowgreen;
+}
+    
+.password-whole input {
+    font-family: b;
+    font-size: 20px;
+    letter-spacing: 1px;
+    text-align: center;
+}
+.password-whole mat-error {
+    font-family: c;
+    text-align: center;
+}
+
+// SHOW/HIDE ___________________________________________________________________________________
+.material-icons {
+    font-size: 20px;
+}
+  
+// SIGNUP ___________________________________________________________________________________
+    .signUp-container {
+    color: white;
+    margin-top: 20px;
+    text-align: center;
+}
+    
+.signUp-container a {
+    color: white;
+    font-family: b;
+    background-color: crimson;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+    
+
