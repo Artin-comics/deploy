@@ -18,9 +18,9 @@ export class ChapterComponent implements OnInit {
   chapterFormValue: any;
   comicstate: any;
   chapterState: any;
-  chaptername: any;
+  chaptername: any = [];
   newChaptername: any;
-  chapters: any;
+  chapters: any = [];
   errorMessage: any;
   isdisplayed: boolean = false;
   isedittable: boolean = false;
@@ -79,7 +79,7 @@ export class ChapterComponent implements OnInit {
     this.service.getchapters(this.comicstate.title)
     .subscribe(response =>{
       response.resp.map((data) => {
-        this.chaptername.push(data.chaptername)
+        this.chapters = this.chaptername?.push(data?.chaptername)
       })
       this.chapters = this.chaptername
     },
