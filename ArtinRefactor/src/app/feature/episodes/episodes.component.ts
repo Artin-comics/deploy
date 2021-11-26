@@ -20,8 +20,8 @@ export class EpisodesComponent implements OnInit {
   episodeState: any;
   episodeFormValue: any;
   errorMessage: any;
-  episodename: any;
-  episodes: any;
+  episodename: any = [];
+  episodes: any = [];
   isedittable: boolean = false;
   isSaveicon: boolean = false;
   selectedvariable: any;
@@ -82,8 +82,8 @@ export class EpisodesComponent implements OnInit {
   getEpisode() {
     this.service.getepisodes(this.comicstate.title, this.chapterState.chaptername)
     .subscribe(response =>{  
-      this.episodename = response.resp.episode
-      this.episodes = this.episodename.split(',')
+      this.episodename = response?.resp?.episode
+      this.episodes = this.episodename?.split(',')
     },
     err =>{
       this.errorMessage = err.error.message;
