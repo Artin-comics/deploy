@@ -81,9 +81,13 @@ export class EpisodesComponent implements OnInit {
 
   getEpisode() {
     this.service.getepisodes(this.comicstate.title, this.chapterState.chaptername)
-    .subscribe(response =>{  
+    .subscribe(response =>{ 
+      console.log('response',response);
       this.episodename = response?.resp?.episode
+      console.log('all episode',this.episodename);
       this.episodes = this.episodename?.split(',')
+      console.log('array of episode',this.episodes);
+      
     },
     err =>{
       this.errorMessage = err.error.message;
