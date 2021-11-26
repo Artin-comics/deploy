@@ -18,13 +18,13 @@ export class ScenesComponent implements OnInit {
   comicstate: any;
   chapterState: any;
   episodeState: any;
-  storydata: any;
+  storydata: any = [];
   sceneForm: FormGroup;
   StoryForm: FormGroup;
   episodeoverForm: FormGroup;
   episodedataForm: FormGroup;
   errorMessage: any;
-  episodeheader: any;
+  episodeheader: any = [];
   episodeheaderview: any
 
   constructor(
@@ -70,7 +70,8 @@ export class ScenesComponent implements OnInit {
   getScene() {
     this.service.getscene(this.comicstate.title, this.episodeState.episodename, this.chapterState.chaptername)
     .subscribe(response => {
-      this.storydata = response.resp.scenes;
+      this.storydata = response?.resp?.scenes;
+      console.log('Scenes',this.storydata)
     });
   }
 
@@ -129,8 +130,9 @@ export class ScenesComponent implements OnInit {
   getepisodeoverview() {
     this.service.getepisodeoverview(this.comicstate.title, this.episodeState.episodename, this.chapterState.chaptername)
     .subscribe(response => {
-      this.episodeheader = response.resp
-      this.episodeheaderview = this.episodeheader[0].episodeoverview;
+      this.episodeheader = response?.resp
+      console.log('Overview',this.episodeheader);
+      this.episodeheaderview = this.episodeheader[0]?.episodeoverview;
     });
   }
 
